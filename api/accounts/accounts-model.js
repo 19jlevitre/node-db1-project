@@ -23,8 +23,10 @@ const getByName = async name => {
   return result
 }
 
-const updateById = (id, account) => {
+const updateById =  async (id, account) => {
   // DO YOUR MAGIC
+  await db('accounts').update(account).where('id',id)
+  return getById(id)
 }
 
 const deleteById = id => {
