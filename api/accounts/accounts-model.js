@@ -11,8 +11,16 @@ const getById =  async id => {
   return result
 }
 
-const create = account => {
+const create =  async account => {
   // DO YOUR MAGIC
+  const [id] = await db('accounts').insert(account)
+  const newAccount = await getById(id)
+  return newAccount
+}
+
+const getByName = async name => {
+  const result =  await db('accounts').where('name', name).first()
+  return result
 }
 
 const updateById = (id, account) => {
@@ -29,4 +37,5 @@ module.exports = {
   create,
   updateById,
   deleteById,
+  getByName,
 }
